@@ -1,6 +1,6 @@
-class Room():
+class Room:
     @staticmethod
-    def all_rooms():
+    def get_all_rooms():
         return ['Arlington', 'Marblehead', 'Wayland', 'Weston', 'Wellesley', 'Newton', 'Framingham', 'Cambridge',
                 'Somerville', 'Waltham', 'Salem', 'Gloucester', 'Manchester', 'Beverley']
 

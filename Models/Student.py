@@ -1,4 +1,4 @@
-class Student():
+class Student:
     def __init__(self, name, subjects, total_periods):
         self.name = name
         self.subjects = subjects
