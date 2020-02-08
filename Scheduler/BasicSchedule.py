@@ -4,6 +4,8 @@ from Models.Student import Student
 from Models.Subject import Subject
 from Models.Teacher import Teacher
 
+from collections import defaultdict
+
 
 def main():
     rooms = Room.all_rooms()
@@ -12,17 +14,24 @@ def main():
     teachers = []
     classes = []
     periods = 8
+    student_subject_conflicts = defaultdict(lambda: [])
+    q = {}
 
     # 3D matrix of periods/subjects/classes
 
     for student in students:
         for subject in student.subjects:
-            conflict_periods = set()
+            period_conflicts = set()
             while student.has_open_period():
                 period = student.open_periods.pop()
                 # get open class for subject in period
                 # if no open class, create new class for subject in period with an open room
-                # if no ope
+                # if no open room, add period to period_conflicts
+            if len(period_conflicts) > 0:
+                student_subject_conflicts[student].append(subject)
+                pass
+
+            student.add_open_periods(period_conflicts)
 
 
 """
