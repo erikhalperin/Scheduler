@@ -9,3 +9,6 @@ class Student:
 
     def has_open_period(self):
         return len(self.open_periods) > 0
+
+    def get_open_period(self):
+        return self.open_periods.pop()

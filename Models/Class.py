@@ -12,4 +12,4 @@ class Class:
         return len(self.students) < self.student_limit
 
     def __str__(self):
-        return 'S={},P={},R={},T={}'.format(self.subject.name, self.period, self.room, self.teacher)
+        return 'S={},P={},R={},T={},#={}'.format(self.subject.name, self.period, self.room, self.teacher, len(self.students))
