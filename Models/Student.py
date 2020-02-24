@@ -1,5 +1,10 @@
+from typing import List
+
+from Models import Subject
+
+
 class Student:
-    def __init__(self, name, subjects, total_periods):
+    def __init__(self, name: str, subjects: List[Subject], total_periods: int):
         self.name = name
         self.subjects = subjects
         self.open_periods = set(range(total_periods))

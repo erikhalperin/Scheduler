@@ -1,9 +1,9 @@
-from Models.Class import Class
-from Models.Room import Room
-from Models.Schedule import Schedule
-from Models.Student import Student
-from Models.Subject import Subject
-from Models.Teacher import Teacher
+from Models import Class
+from Models import Room
+from Models import Schedule
+from Models import Student
+from Models import Subject
+from Models import Teacher
 
 from collections import defaultdict
 
@@ -18,7 +18,7 @@ def main():
     student_subject_conflicts = defaultdict(lambda: [])
 
     # 3D matrix of num_periods/subjects/classes
-    master_schedule = Schedule(num_periods, all_subjects, len(rooms))
+    master_schedule = Schedule(num_periods, all_subjects, rooms)
 
     print(master_schedule)
 
@@ -29,9 +29,10 @@ def main():
                 period = student.get_open_period()
 
                 # get open class for subject in period
-                open_class = master_schedule.get_open_class(period, subject.id)
+                open_class = master_schedule.get_open_class(period, subject)
 
-                # if no open class, create new class for subject in period with an open room
+                # if no open class, create new class for subject in period
+                new_class = Class(subject, period)
 
                 # if no open room, add period to period_conflicts
 

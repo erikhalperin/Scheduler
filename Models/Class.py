@@ -1,8 +1,11 @@
+from Models import Subject
+
+
 class Class:
-    def __init__(self, subject, period):
+    def __init__(self, period: int, subject: Subject):
         self.name = subject
-        self.subject = subject
         self.period = period
+        self.subject = subject
         self.room = None
         self.teacher = None
         self.students = []
