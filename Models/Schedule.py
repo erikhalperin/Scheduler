@@ -1,6 +1,7 @@
 from Models import Class
 from Models import Room
 from Models import Subject
+from optional import Optional
 from typing import List
 
 
@@ -9,14 +10,14 @@ class Schedule:
         self.subjects = subjects
         self.num_periods = num_periods
         self.matrix = [[[Class(p, s)] for s in subjects] for p in range(num_periods)]
-        self.open_rooms = open_rooms
-        self.full_rooms = []
+        self.open_rooms = [open_rooms for p in range(num_periods)]
+        self.used_rooms = [[] for p in range(num_periods)]
 
-    def get_open_class(self, period: int, subject: Subject) -> Class:
+    def get_open_class(self, period: int, subject: Subject) -> Optional.of(Class):
         newest_class = self.matrix[period][subject.id][-1]
         if newest_class.is_open():
-            return newest_class
-        return None
+            return Optional.of(newest_class)
+        return Optional.empty()
 
     def create_new_class(self, period: int, subject: Subject) -> Class:
         new_class = Class(period, subject)

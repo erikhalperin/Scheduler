@@ -1,3 +1,4 @@
+from Models import Student
 from Models import Subject
 
 
@@ -11,7 +12,10 @@ class Class:
         self.students = []
         self.student_limit = 30
 
-    def is_open(self):
+    def add_student(self, student: Student):
+        self.students.append(student)
+
+    def is_open(self) -> bool:
         return len(self.students) < self.student_limit
 
     def __str__(self):

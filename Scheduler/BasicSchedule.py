@@ -24,24 +24,16 @@ def main():
 
     for student in all_students:
         for subject in student.subjects:
-            period_conflicts = set()
             while student.has_open_period():
                 period = student.get_open_period()
 
-                # get open class for subject in period
-                open_class = master_schedule.get_open_class(period, subject)
+                open_class_optional = master_schedule.get_open_class(period, subject)
+                if open_class_optional.is_present():
+                    open_class_optional.get().add_student(student)
+                else:
+                    master_schedule.create_new_class(subject, period).add_student(student)
 
-                # if no open class, create new class for subject in period
-                new_class = Class(subject, period)
-
-                # if no open room, add period to period_conflicts
-
-            if len(period_conflicts) > 0:
-                student_subject_conflicts[student].append(subject)
-                pass
-
-            student.add_open_periods(period_conflicts)
-
+    
 
 """
 For each student:
